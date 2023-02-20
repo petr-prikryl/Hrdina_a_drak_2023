@@ -1,6 +1,7 @@
 ﻿using Hrdina_a_drak_2023.Postavy;
 using Hrdina_a_drak_2023.Veci;
 using System;
+using System.IO;
 
 namespace Hrdina_a_drak_2023
 {
@@ -30,19 +31,21 @@ namespace Hrdina_a_drak_2023
             Hrdina hrdina = new Hrdina(100, mec);
             Drak drak = new Drak(120, 15);
 
-            while (hrdina.JeZiva() && drak.JeZiva())
+            using (StreamWriter streamWriter = File.CreateText("zaznam boje.txt"))
             {
-                double utokHrdiny = hrdina.Utok(drak);
-                Console.WriteLine($"Hrdina zaútočil hodnotou: {utokHrdiny}. Drak má {drak.Zdravi} zdraví." + Environment.NewLine);
-
-                if (drak.JeZiva())
+                while (hrdina.JeZiva() && drak.JeZiva())
                 {
-                    double utokDraka = drak.Utok(hrdina);
-                    Console.WriteLine($"Drak zaútočil hodnotou: {utokDraka}. Hrdina má {hrdina.Zdravi} zdraví.");
-                }
-                Console.WriteLine(Environment.NewLine + Environment.NewLine);
-            }
+                    double utokHrdiny = hrdina.Utok(drak);
+                    Console.WriteLine($"Hrdina zaútočil hodnotou: {utokHrdiny}. Drak má {drak.Zdravi} zdraví." + Environment.NewLine);
 
+                    if (drak.JeZiva())
+                    {
+                        double utokDraka = drak.Utok(hrdina);
+                        Console.WriteLine($"Drak zaútočil hodnotou: {utokDraka}. Hrdina má {hrdina.Zdravi} zdraví.");
+                    }
+                    Console.WriteLine(Environment.NewLine + Environment.NewLine);
+                }
+            }
         }
     }
 }
