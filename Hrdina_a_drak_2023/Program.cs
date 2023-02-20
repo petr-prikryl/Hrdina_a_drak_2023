@@ -26,6 +26,7 @@ namespace Hrdina_a_drak_2023
 
 
             Mec mec = new Mec("Excalibur", 25);
+            mec = new Mec("obycejny mec", 20);
             Hrdina hrdina = new Hrdina(100, mec);
             Drak drak = new Drak(120, 15);
 
