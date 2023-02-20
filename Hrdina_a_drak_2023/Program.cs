@@ -33,15 +33,22 @@ namespace Hrdina_a_drak_2023
 
             using (StreamWriter streamWriter = File.CreateText("zaznam boje.txt"))
             {
+                string udajeOzacatku = $"Zdraví hrdiny je {hrdina.Zdravi}, zdraví draka je {drak.Zdravi},maximální útok meče je {mec.MaxUtok} a maximální útok draka je {drak.MaxUtok}." + Environment.NewLine;
+                streamWriter.WriteLine(udajeOzacatku);
+                Console.WriteLine(udajeOzacatku);
                 while (hrdina.JeZiva() && drak.JeZiva())
                 {
                     double utokHrdiny = hrdina.Utok(drak);
-                    Console.WriteLine($"Hrdina zaútočil hodnotou: {utokHrdiny}. Drak má {drak.Zdravi} zdraví." + Environment.NewLine);
+                    string textKvypisu = $"Hrdina zaútočil hodnotou: {utokHrdiny}. Drak má {drak.Zdravi} zdraví." + Environment.NewLine;
+                    Console.WriteLine(textKvypisu);
+                    streamWriter.WriteLine(textKvypisu);
 
                     if (drak.JeZiva())
                     {
                         double utokDraka = drak.Utok(hrdina);
-                        Console.WriteLine($"Drak zaútočil hodnotou: {utokDraka}. Hrdina má {hrdina.Zdravi} zdraví.");
+                        string textKvypisu1 = $"Drak zaútočil hodnotou: {utokDraka}. Hrdina má {hrdina.Zdravi} zdraví.";
+                        Console.WriteLine(textKvypisu1);
+                        streamWriter.WriteLine(textKvypisu1);
                     }
                     Console.WriteLine(Environment.NewLine + Environment.NewLine);
                 }
